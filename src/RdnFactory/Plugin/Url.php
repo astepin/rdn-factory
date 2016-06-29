@@ -16,7 +16,7 @@ class Url extends AbstractPlugin
 	 *
 	 * @return string
 	 */
-	public function __invoke($route = null, $params = array(), $options = array(), $reuseMatchedParams = false)
+	public function __invoke($route = null, $params = [], $options = [], $reuseMatchedParams = false)
 	{
 		/** @var AbstractActionController $controller */
 		$controller = $this->factory->controller('RdnFactory:Index');

@@ -2,7 +2,7 @@
 
 namespace RdnFactory\Plugin;
 
-use Zend\Mvc\Router\RouteMatch;
+use \Zend\Router\RouteMatch;
 
 class Params extends AbstractPlugin
 {

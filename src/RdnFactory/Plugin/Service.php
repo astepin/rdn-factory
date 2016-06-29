@@ -2,8 +2,6 @@
 
 namespace RdnFactory\Plugin;
 
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-
 class Service extends AbstractPlugin
 {
 	/**
@@ -17,12 +15,6 @@ class Service extends AbstractPlugin
 	public function __invoke($name)
 	{
 		$services = $this->factory->getPlugins();
-
-		while ($services instanceof ServiceLocatorAwareInterface)
-		{
-			$services = $services->getServiceLocator();
-		}
-
 		return $services->get($name);
 	}
 }

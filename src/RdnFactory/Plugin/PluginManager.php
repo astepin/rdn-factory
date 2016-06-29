@@ -3,7 +3,7 @@
 namespace RdnFactory\Plugin;
 
 use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\Exception;
+use Zend\Stdlib\Exception;
 
 class PluginManager extends AbstractPluginManager
 {

@@ -30,7 +30,7 @@ class Config extends AbstractPlugin
 			}
 
 			$key = array_shift($args);
-			$config = isset($config[$key]) ? $config[$key] : array();
+			$config = isset($config[$key]) ? $config[$key] : [];
 		}
 
 		return $config;

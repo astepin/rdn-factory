@@ -4,18 +4,17 @@ namespace RdnFactory;
 
 use RdnFactory\Plugin\PluginInterface;
 use RdnFactory\Plugin\PluginManager;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Stdlib\DispatchableInterface;
 
 /**
  * Make it is easy to create factory classes. Contains helper methods for frequently used services.
  *
  * @method mixed config(\string $name = null)
- * @method \Zend\Stdlib\DispatchableInterface controller(\string $name)
- * @method \Zend\Form\ElementInterface form(\string $name)
+ * @method DispatchableInterface controller(\string $name)
  * @method mixed params(\string $name, mixed $default = null)
  * @method mixed service(\string $name)
- * @method \string url(\string $name = null, $params = array(), $options = array(), $reuseMatchedParams = false)
+ * @method \string url(\string $name = null, $params = [], $options = [], $reuseMatchedParams = false)
  */
 abstract class AbstractFactory implements FactoryInterface
 {
@@ -46,11 +45,6 @@ abstract class AbstractFactory implements FactoryInterface
 
 	public function setServiceLocator(ServiceLocatorInterface $services)
 	{
-		while ($services instanceof ServiceLocatorAwareInterface)
-		{
-			$services = $services->getServiceLocator();
-		}
-
 		$this->setPlugins($services->get('RdnFactory\Plugin\PluginManager'));
 	}
 
@@ -64,14 +58,14 @@ abstract class AbstractFactory implements FactoryInterface
 		return $this->plugins;
 	}
 
-	public function __call($name, $args = array())
+	public function __call($name, $args = [])
 	{
 		if (!$this->plugins instanceof ServiceLocatorInterface)
 		{
 			throw new \RuntimeException('No service locator set for factory. Set the service locator using the setServiceLocator() method first.');
 		}
 
-		/** @var PluginInterface $plugin */
+		/** @var PluginInterface|callable $plugin */
 		$plugin = $this->plugins->get($name);
 		$plugin->setFactory($this);
 
