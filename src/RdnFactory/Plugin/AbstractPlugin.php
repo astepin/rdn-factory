@@ -2,13 +2,12 @@
 
 namespace RdnFactory\Plugin;
 
-use RdnFactory\AbstractFactory;
 use RdnFactory\FactoryInterface;
 
 abstract class AbstractPlugin implements PluginInterface
 {
 	/**
-	 * @var AbstractFactory
+	 * @var FactoryInterface
 	 */
 	protected $factory;
 

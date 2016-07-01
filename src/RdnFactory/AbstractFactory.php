@@ -37,14 +37,9 @@ abstract class AbstractFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
     {
-        $this->setServiceLocator($container);
+        $this->setPlugins($container->get('RdnFactory\Plugin\PluginManager'));
         return $this->create();
     }
-
-	public function setServiceLocator(ContainerInterface $services)
-	{
-		$this->setPlugins($services->get('RdnFactory\Plugin\PluginManager'));
-	}
 
 	public function setPlugins(PluginManager $plugins)
 	{
@@ -56,15 +51,15 @@ abstract class AbstractFactory implements FactoryInterface
 		return $this->plugins;
 	}
 
-	public function __call($name, $args = [])
+	public function __call($name, array $args = [])
 	{
-		if (!$this->plugins instanceof ContainerInterface)
+		if (!$this->getPlugins() instanceof ContainerInterface)
 		{
 			throw new \RuntimeException('No service locator set for factory. Set the service locator using the setServiceLocator() method first.');
 		}
 
 		/** @var PluginInterface|callable $plugin */
-		$plugin = $this->plugins->get($name);
+		$plugin = $this->getPlugins()->get($name);
 		$plugin->setFactory($this);
 
 		if (is_callable($plugin))
