@@ -9,12 +9,12 @@ return [
 
     'rdn_factory_plugins' => [
         'aliases' => [
-			'Config' => 'RdnFactory:Config',
-			'Controller' => 'RdnFactory:Controller',
-			'Form' => 'RdnFactory:Form',
-			'Params' => 'RdnFactory:Params',
-			'Service' => 'RdnFactory:Service',
-			'Url' => 'RdnFactory:Url',
+			'config' => 'RdnFactory:Config',
+			'controller' => 'RdnFactory:Controller',
+			'form' => 'RdnFactory:Form',
+			'params' => 'RdnFactory:Params',
+			'service' => 'RdnFactory:Service',
+			'url' => 'RdnFactory:Url',
         ],
 
         'invokables' => [

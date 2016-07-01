@@ -29,4 +29,12 @@ class PluginManager extends AbstractPluginManager
 			, __NAMESPACE__
 		));
 	}
+
+    /**
+     * @return \Interop\Container\ContainerInterface
+     */
+	public function getCreationContext()
+    {
+        return $this->creationContext;
+    }
 }

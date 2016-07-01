@@ -14,7 +14,8 @@ class Service extends AbstractPlugin
 	 */
 	public function __invoke($name)
 	{
+	    /** @var PluginManager $services */
 		$services = $this->factory->getPlugins();
-		return $services->get($name);
+		return $services->getCreationContext()->get($name);
 	}
 }
