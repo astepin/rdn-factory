@@ -30,18 +30,16 @@ abstract class AbstractFactory implements FactoryInterface
 	 */
 	abstract protected function create();
 
-	/**
-	 * Overwrite the FactoryInterface method to enable internal helpers.
-	 *
-	 * @param ContainerInterface $services
-	 *
-	 * @return mixed
-	 */
-	public function createService(ContainerInterface $services)
-	{
-		$this->setServiceLocator($services);
-		return $this->create();
-	}
+    /**
+     * Overwrite the FactoryInterface method to enable internal helpers.
+     *
+     * {@inheritdoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
+    {
+        $this->setServiceLocator($container);
+        return $this->create();
+    }
 
 	public function setServiceLocator(ContainerInterface $services)
 	{
