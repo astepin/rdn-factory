@@ -5,6 +5,7 @@ namespace RdnFactory;
 use Interop\Container\ContainerInterface;
 use RdnFactory\Plugin\PluginInterface;
 use RdnFactory\Plugin\PluginManager;
+use Zend\ServiceManager\AbstractPluginManager;
 use Zend\Stdlib\DispatchableInterface;
 
 /**
@@ -53,7 +54,7 @@ abstract class AbstractFactory implements FactoryInterface
 
 	public function __call($name, array $args = [])
 	{
-		if (!$this->getPlugins() instanceof ContainerInterface)
+		if (!$this->getPlugins() instanceof AbstractPluginManager)
 		{
 			throw new \RuntimeException('No service locator set for factory. Set the service locator using the setServiceLocator() method first.');
 		}
