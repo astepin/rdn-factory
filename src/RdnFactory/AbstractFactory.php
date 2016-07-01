@@ -56,7 +56,7 @@ abstract class AbstractFactory implements FactoryInterface
 	{
 		if (!$this->getPlugins() instanceof AbstractPluginManager)
 		{
-			throw new \RuntimeException('No service locator set for factory. Set the service locator using the setServiceLocator() method first.');
+			throw new \RuntimeException('No AbstractPluginManager set. '.get_class($this->getPlugins()));
 		}
 
 		/** @var PluginInterface|callable $plugin */
