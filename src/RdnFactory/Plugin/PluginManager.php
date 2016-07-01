@@ -16,7 +16,7 @@ class PluginManager extends AbstractPluginManager
 	 * @return void
 	 * @throws Exception\RuntimeException if invalid
 	 */
-	public function validatePlugin($plugin)
+	public function validate($plugin)
 	{
 		if ($plugin instanceof PluginInterface)
 		{

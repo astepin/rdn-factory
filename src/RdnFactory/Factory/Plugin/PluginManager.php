@@ -30,7 +30,7 @@ class PluginManager implements FactoryInterface
         $config = $container->get('Config');
         $config = new Config($config['rdn_factory_plugins']);
 
-        $plugins = new Plugin\PluginManager($config);
+        $plugins = new Plugin\PluginManager($container, $config->toArray());
 
         return $plugins;
     }
